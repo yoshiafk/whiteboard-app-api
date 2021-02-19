@@ -1,1 +1,1 @@
-untuk archive belum ketemu juga solusinya
+deleted field udah ada, tapi belum bisa liat field ketika deleted sudah true
