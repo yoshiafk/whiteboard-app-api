@@ -1,5 +1,4 @@
-const List = require('../models/list');
-const softDelete = require('mongoosejs-soft-delete');
+const List = require('../models/list')
 
 module.exports = {
     newList: async (req, res) =>{
@@ -21,7 +20,7 @@ module.exports = {
 
     getList: async (req, res) =>{
         try {
-            const list = await List.find()
+            const list = await List.find({deleted: false})
             res.send({
                 status: 200,
                 data: list,
@@ -35,7 +34,7 @@ module.exports = {
 
     getListById: async (req, res) =>{
         try {
-            const list = await List.findOne({_id: req.params.listId})
+            const list = await List.findOne({_id: req.params.listId, deleted: false})
             res.send({
                 status: 200,
                 data: list,
@@ -65,14 +64,20 @@ module.exports = {
 
     deleteList: async (req, res)=>{
         try {
-            const listDelete = await List.removeOne({_id: req.params.listId})
+            const list = await List.deleteOne({_id: req.params.listId, deleted: false});
+            if (!list || list.deleted === true){
+                return res.status(404).json({
+                    error: 'requested list does not exist'
+                });
+            }
+            
+            list.deleted = true;
+            await list.save();
     
-            res.send({
-                status: 200,
-                data: listDelete,
-                message: 'success archive list'
-            })
-        } catch (err) {
+            res.status(200).json({
+                message: 'list archived'
+            });
+            } catch (err) {
             res.json({message:err})
         }
     }

@@ -1,17 +1,21 @@
 const mongoose = require('mongoose');
-let softDelete = require('mongoosejs-soft-delete')
 const {Schema} = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
+const softDelete = require('mongoosejs-soft-delete');
 
 const ListSchema = mongoose.Schema({
       title:{
         type: String,
         required: true
       },
-      card:[{
-          type: Schema.Types.ObjectId,
-          ref: 'card'
-      }]
+      deleted: {
+        type: Schema.Types.Boolean,
+        index: true,
+        default: false
+      },
+
 },
     {timestamps: true}
 );
+
 module.exports = mongoose.model('List', ListSchema);
