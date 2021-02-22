@@ -1,1 +1,1 @@
-deleted field udah ada, tapi belum bisa liat field ketika deleted sudah true
+archive dan retrive sudah done
