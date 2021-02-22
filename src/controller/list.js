@@ -14,13 +14,13 @@ module.exports = {
             })
             
         } catch (err) {
-            res.json({message:err})    
+            res.status(404).json({message:'title name is required'})    
         }
     },
 
     getList: async (req, res) =>{
         try {
-            const list = await List.find({deleted: false})
+            const list = await List.find({active: true})
             res.send({
                 status: 200,
                 data: list,
@@ -34,7 +34,7 @@ module.exports = {
 
     getListById: async (req, res) =>{
         try {
-            const list = await List.findOne({_id: req.params.listId, deleted: false})
+            const list = await List.findOne({_id: req.params.listId, active: true})
             res.send({
                 status: 200,
                 data: list,
@@ -42,7 +42,7 @@ module.exports = {
             })
           
         } catch(err){
-            res.json({message: err})
+            res.status(404).json({message:'list not found'})
         }
         },
 
@@ -58,27 +58,42 @@ module.exports = {
                 message: "success update list title"
         })
         } catch (err) {
-            res.json({message: err})
+            res.status(404).json({message:'title name is required'})
         }
     },
 
-    deleteList: async (req, res)=>{
+    archiveList: async (req, res)=>{
         try {
-            const list = await List.deleteOne({_id: req.params.listId, deleted: false});
-            if (!list || list.deleted === true){
-                return res.status(404).json({
-                    error: 'requested list does not exist'
-                });
-            }
+            await List.findByIdAndUpdate(req.params.listId, {active: false})
             
-            list.deleted = true;
-            await list.save();
-    
             res.status(200).json({
-                message: 'list archived'
-            });
-            } catch (err) {
-            res.json({message:err})
+                status: 'success',
+                message: 'list successfully archived',
+                data: null
+            })
+        } catch (error) {
+            res.status(500).json({
+                status: 'failed',
+                message: error.message
+            })
+        }
+    },
+    retriveList: async (req, res)=>{
+        try {
+            await List.findByIdAndUpdate(req.params.listId, {active: true})
+
+            res.status(200).json({
+                status: 'success',
+                message: 'list successfully retrived',
+                data: List
+            })
+            
+        } catch (error) {
+            res.status(500).json({
+                status: 'failed',
+                message: error.message
+            })
+            
         }
     }
 }

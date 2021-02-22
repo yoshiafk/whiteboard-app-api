@@ -8,10 +8,10 @@ const ListSchema = mongoose.Schema({
         type: String,
         required: true
       },
-      deleted: {
-        type: Schema.Types.Boolean,
-        index: true,
-        default: false
+      active: {
+        type: Boolean,
+        default: true,
+        select: false
       },
 
 },
