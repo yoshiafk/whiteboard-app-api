@@ -14,7 +14,7 @@ module.exports = {
             })
             
         } catch (err) {
-            res.status(404).json({message:'title name is required'})    
+            res.status(500).json({message:'title name is required'})    
         }
     },
 
@@ -42,7 +42,7 @@ module.exports = {
             })
           
         } catch(err){
-            res.status(404).json({message:'list not found'})
+            res.status(500).json({message:'list not found'})
         }
         },
 
@@ -58,7 +58,7 @@ module.exports = {
                 message: "success update list title"
         })
         } catch (err) {
-            res.status(404).json({message:'title name is required'})
+            res.status(500).json({message:'title name is required'})
         }
     },
 
