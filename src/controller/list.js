@@ -8,7 +8,7 @@ module.exports = {
         try {
             const list = await listPost.save()
             res.send({
-                status: 200,
+                status: 201,
                 data: list,
                 message: "list created"
             })
@@ -53,7 +53,7 @@ module.exports = {
                 title: req.body.title
             })
                 res.send({
-                status: 200,
+                status: 201,
                 data:listUpdate,
                 message: "success update list title"
         })
