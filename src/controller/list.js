@@ -82,7 +82,7 @@ module.exports = {
         try {
             await List.findByIdAndUpdate(req.params.listId, {active: true})
 
-            res.status(200).json({
+            res.status(201).json({
                 status: 'success',
                 message: 'list successfully retrived',
                 data: List
