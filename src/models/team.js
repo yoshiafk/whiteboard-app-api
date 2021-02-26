@@ -19,7 +19,7 @@ const TeamSchema = new mongoose.Schema({
     }],
     __v: {
         type: Number,
-        select: false
+        select: false 
     }
 })
 
