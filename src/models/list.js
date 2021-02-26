@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const {Schema} = require('mongoose');
-const mongooseDelete = require('mongoose-delete');
-const softDelete = require('mongoosejs-soft-delete');
 
 const ListSchema = mongoose.Schema({
       title:{
