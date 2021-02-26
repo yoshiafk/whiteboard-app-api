@@ -1,5 +1,4 @@
-HEAD
-bingung gmn caranya nampilin res.statusnya
+Bingung gmn caranya nampilin res.statusnya
 =======
 Feature Board & Team
 
