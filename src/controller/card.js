@@ -1,16 +1,18 @@
-const List = require('../models/list')
+const Card = require('../models/card')
 
 module.exports = {
-    newList: async (req, res) =>{
-        const listPost = new List({
-            title: req.body.title
+    newCard: async (req, res) =>{
+        const cardPost = new Card({
+            title: req.body.title,
+            priority: req.body.priority,
+            description: req.body.description
         })
         try {
-            const list = await listPost.save()
+            const card = await cardPost.save()
             res.send({
                 status: 201,
-                data: list,
-                message: "list created"
+                data: card,
+                message: "card created"
             })
             
         } catch (err) {
@@ -18,13 +20,13 @@ module.exports = {
         }
     },
 
-    getList: async (req, res) =>{
+    getCard: async (req, res) =>{
         try {
-            const list = await List.find({active: true})
+            const card = await Card.find({active: true})
             res.send({
                 status: 200,
-                data: list,
-                message: "Get all list data"
+                data: card,
+                message: "Get all card data"
             })
           
         } catch(err){
@@ -32,43 +34,43 @@ module.exports = {
         }
       },
 
-    getListById: async (req, res) =>{
+    getCardById: async (req, res) =>{
         try {
-            const list = await List.findOne({_id: req.params.listId, active: true})
+            const card = await Card.findOne({_id: req.params.cardId, active: true})
             res.send({
                 status: 200,
-                data: list,
-                message: "Get list data by id"
+                data: card,
+                message: "Get card data by id"
             })
           
         } catch(err){
-            res.status(500).json({message:'list not found'})
+            res.status(500).json({message:'card not found'})
         }
         },
 
-    updateList: async (req, res) =>{
+    updateCard: async (req, res) =>{
         try {
-            const listUpdate = await List.updateOne({_id: req.params.listId},
+            const cardUpdate = await Card.updateOne({_id: req.params.cardId},
                 {
                 title: req.body.title
             })
                 res.send({
                 status: 201,
-                data:listUpdate,
-                message: "success update list title"
+                data: cardUpdate,
+                message: "success update card title"
         })
         } catch (err) {
             res.status(500).json({message:'title name is required'})
         }
     },
 
-    archiveList: async (req, res)=>{
+    archiveCard: async (req, res)=>{
         try {
-            await List.findByIdAndUpdate(req.params.listId, {active: false})
+            await Card.findByIdAndUpdate(req.params.cardId, {active: false})
             
             res.status(200).json({
                 status: 'success',
-                message: 'list successfully archived',
+                message: 'card successfully archived',
                 data: null
             })
         } catch (error) {
@@ -78,14 +80,14 @@ module.exports = {
             })
         }
     },
-    retriveList: async (req, res)=>{
+    retriveCard: async (req, res)=>{
         try {
-            await List.findByIdAndUpdate(req.params.listId, {active: true})
+            await Card.findByIdAndUpdate(req.params.cardId, {active: true})
 
             res.status(200).json({
                 status: 'success',
-                message: 'list successfully retrived',
-                data: List
+                message: 'card successfully retrived',
+                data: Card
             })
             
         } catch (error) {
