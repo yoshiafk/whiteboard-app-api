@@ -1,8 +1,6 @@
-Bingung gmn caranya nampilin res.statusnya
-=======
 Feature Board & Team
-
-- masalah add user ke Team masih error
+=======
+- _masalah add user ke Team masih error_
 - solved
 
 
