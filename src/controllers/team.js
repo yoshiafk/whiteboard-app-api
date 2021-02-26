@@ -2,32 +2,63 @@ const Team = require ('../models/team')
 const User = require ('../models/user')
 const mongoose = require ('mongoose')
 
-exports.addTeam = async function(req, res) {
-   try{
-    const user = await User.findById(req.body.userId)
-    
-    user.userId = req.body.userId
-
-    const response = await team.save()
-        if(!response) return res.status(404).json({
-            message: 'Id not found',
-            error: err
-        })
-       
-        res.status(200).json({
-            message: 'succes add user to team',
-            data: response
-        })
-    }catch(error){
+//get populate
+exports.teamUser = async function(req,res){
+    const id = req.params.id
+    await Team.findOne({ _id: id})
+    .populate('userId', 'email name')
+    .exec()
+    .then((teams) => {
+        res.status(200).json(teams)
+    })
+    .catch(
+        (error) => {
         res.status(500).json({
-            error:err
+            error: error.message
         })
-    }
+    })  
+}
+
+//=====================================================
+exports.addUserTeam = async function (req,res){
+     const userId = req.body.userId
+     const id = req.params.id
+     try{
+     const result = await Team.findByIdAndUpdate(
+        {_id: id},
+        {$push: {userId: userId}
+    })
+    
+        res.status(200).json({
+            message: `succesfully add user with ID: ${userId} on team`,
+            result: result
+                    
+        })
+     }catch(error){
+         res.status(500).json({
+             message: error.message
+         })
+     }
     
 }
 
+//====================================================
 exports.removeTeam = async function (req, res){
-    
+    const userId = req.body.userId
+    const id = req.params.id
+     try{
+        await Team.updateOne(
+        {_id: id},
+        {$pull: {userId: userId}
+    })
+        res.status(200).json({
+            message: `user with ID: ${userId} has been remove`,
+        })
+     }catch(error){
+         res.status(500).json({
+             message: error.message
+         })
+     }
 }
 //===========================================================
 exports.allTeam = async function(req, res){
@@ -43,23 +74,24 @@ exports.allTeam = async function(req, res){
         })
     }
 }
-
+//=================================================
 exports.newTeam = async function(req, res){
     const team = new Team()
     team.teamName = req.body.teamName
     try{
         const response = await team.save()
+
         res.status(200).json({
             message: 'new Team created',
             data: response
         })
     }catch(error){
         res.status(500).json({
-            message: err
+            message: error.message
         })
     }
 }
-
+//================================================
 exports.viewTeam = async function(req, res){
     try{
         const id = req.params.id
@@ -75,6 +107,7 @@ exports.viewTeam = async function(req, res){
         })
     }
 }
+//=================================================
 exports.updateTeam = async function(req, res){
     try{
         const team = await Team.findById(req.params.id)
@@ -83,7 +116,7 @@ exports.updateTeam = async function(req, res){
 
         const response = await team.save(req.params.id)
         
-        if(!response) return res.status(404).json({
+        if(!team) return res.status(404).json({
             message: 'Team doesnt exist'
         })
         res.status(200).json({
@@ -96,7 +129,7 @@ exports.updateTeam = async function(req, res){
         })
     }
 }
-
+//===================================================
 exports.deleteTeam = async function(req, res) {
     try{
         const id = req.params.id

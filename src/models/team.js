@@ -3,9 +3,14 @@ mongoose.set('useCreateIndex', true)
 
 const TeamSchema = new mongoose.Schema({
 
-    teamName:{type: String, max: 255},
+    teamName:{
+        type: String, 
+        max: 255,
+        unique: true
+    },
     userId:[{
         type: mongoose.Schema.Types.ObjectId,
+        unique: true,
         ref: 'User'
     }],
     boardId:[{
@@ -15,3 +20,4 @@ const TeamSchema = new mongoose.Schema({
 })
 
 module.exports= mongoose.model('Team', TeamSchema)
+

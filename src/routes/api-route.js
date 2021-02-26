@@ -19,28 +19,41 @@ router.route('/users/:id')
     .put(userController.update)
     .delete(userController.delete)
 
-//import team controller
+//============================== 
+    //import team controller
+//==============================
 const teamController = require ('../controllers/team')
 //Team routes
 router.route('/team')
     .get(teamController.allTeam)
     .post(teamController.newTeam)
+
 router.route('/team/:id')
     .get(teamController.viewTeam)
     .put(teamController.updateTeam)
     .delete(teamController.deleteTeam)
-router.route('/team/add')
-    .post(teamController.addTeam)
 
-//import board controller
+router.route('/team/:id/team')
+    .get(teamController.teamUser)
+    .put(teamController.addUserTeam)
+router.route('/team/:id/removeUser')
+    .put(teamController.removeTeam)
+
+//============================== 
+    //import board controller
+//==============================
 const boardController = require ('../controllers/board')
 //Board routes
 router.route('/board')
     .post(boardController.newBoard)
+    .get(boardController.allBoard)
 router.route('/board/:id')
     .get(boardController.viewBoard)
     .put(boardController.updateBoard)
     .delete(boardController.deleteBoard)
+router.route('/board/:id/team')
+    .get(boardController.populateBoard)
+    .put(boardController.assignTeam)
 
 
 module.exports = router

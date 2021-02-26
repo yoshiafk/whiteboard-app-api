@@ -9,11 +9,12 @@ const UserSchema = new mongoose.Schema ({
     industri: {
         type: String,
         max: 255
-    },
+    }, 
     companyName:{
         type: String,
         max: 255
     }
+    
 })
 
 module.exports = mongoose.model('User', UserSchema)

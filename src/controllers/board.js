@@ -1,6 +1,19 @@
 const Board =require ('../models/board')
+const Team = require ('../models/team')
 
-
+exports.allBoard = async function (req,res){
+try{
+    const response = await Board.find()
+    res.status(200).json({
+        message: 'My Board',
+        data: response
+    })
+}catch(err){
+    res.status(500).json({
+        message:err
+    })
+}
+}
 
 exports.newBoard = async function (req, res){
     const board = new Board()
@@ -13,7 +26,7 @@ exports.newBoard = async function (req, res){
         })
     }catch(error){
         res.status(500).json({
-            message: err
+            message: error.message
         })
     }
 
@@ -72,4 +85,48 @@ exports.deleteBoard = async function (req, res){
             message: err
         })
     }
+}
+
+exports.assignTeam = async function (req, res){
+    const teamId = req.body.teamId
+    const id = req.params.id
+    try{
+        const result = await Board.findByIdAndUpdate(
+            {_id: id},
+            {$push: {teamId: teamId}},
+
+        )
+        res.status(200).json({
+            message: `Succesfully add team with ID: ${teamId}`
+        })
+    }catch(error){
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+exports.populateBoard = async function(req,res){
+    const id = req.params.id
+    await Board.findOne({_id: id})
+    .populate({
+        path: 'teamId', 
+        populate: {
+            path: 'userId',
+            select: 'name email'
+            
+        }
+    })
+    .exec()
+    .then((result) =>{
+        res.status(200).json(result)
+    })
+    .catch(
+        (error) => {
+            res.status(500).json({
+                error: error.message
+            })
+        }
+    )
+    
 }
