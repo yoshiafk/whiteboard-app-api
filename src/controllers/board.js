@@ -23,6 +23,7 @@ exports.newBoard = async function (req, res){
         res.status(200).json({
             message: 'new Board created',
             data: response
+            
         })
     }catch(error){
         res.status(500).json({
@@ -110,7 +111,8 @@ exports.populateBoard = async function(req,res){
     const id = req.params.id
     await Board.findOne({_id: id})
     .populate({
-        path: 'teamId', 
+        path: 'teamId',
+        select: 'teamName',
         populate: {
             path: 'userId',
             select: 'name email'

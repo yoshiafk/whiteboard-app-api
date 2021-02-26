@@ -16,7 +16,11 @@ const TeamSchema = new mongoose.Schema({
     boardId:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Board'
-    }]
+    }],
+    __v: {
+        type: Number,
+        select: false
+    }
 })
 
 module.exports= mongoose.model('Team', TeamSchema)
