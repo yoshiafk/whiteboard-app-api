@@ -20,4 +20,4 @@ Create register, login and user profile.
 
 # Optional:
 
-- Email activation -> only activated user will be saved in DB.
+- Email activation -> only activated user will be saved in DB. But depends on FE.
