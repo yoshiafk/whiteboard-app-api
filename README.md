@@ -4,12 +4,12 @@ Please organize your file structure as described below to avoid conflict in case
 
 - index.js
 - app.js
-- src
-    -- config
+- src:
+    - config: 
         -- database.js
-    -- controllers
+    - controllers:
         -- index.js
-    -- middlewares
-    -- models
-    -- routes
-    -- services
+    - middlewares:
+    - models:
+    - routes:
+    - services:
