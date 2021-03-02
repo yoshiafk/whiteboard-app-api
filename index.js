@@ -1,15 +1,13 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-
-const app = require("./src/server");
-const server = require("./src/server");
-
-
 require("dotenv").config();
+const app = require('./app');
+// console.log(app.get('env')); //express by default sets it as 'development'
+// console.log(process.env);
 
-const { PORT, NODE_ENV } = process.env;
+const mongodbConnection = require('./src/config/database');
 
-app.listen(PORT, () => {
-  console.log(`Express is running on port ${PORT} and use ${NODE_ENV} ENV`);
+
+
+const port = process.env.PORT || 3001
+app.listen(port, () => {
+    console.log(`App is running on ${port}`)
 });
-

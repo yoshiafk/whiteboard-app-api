@@ -19,12 +19,14 @@
   },
   "homepage": "https://gitlab.com/glints-academy-batch-10/whiteboard/be-whiteboard/whiteboard-api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "mongoose": "^5.11.16",
     "mongoose-delete": "^0.5.3",
-    "mongoosejs-soft-delete": "^1.0.2"
+    "mongoosejs-soft-delete": "^1.0.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

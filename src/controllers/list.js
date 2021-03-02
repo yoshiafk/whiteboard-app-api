@@ -1,6 +1,6 @@
 const List = require('../models/list')
 
-module.exports = {
+module.exports =  {
     newList: async (req, res) =>{
         const listPost = new List({
             title: req.body.title
@@ -14,7 +14,7 @@ module.exports = {
             })
             
         } catch (err) {
-            res.status(500).json({message:'title name is required'})    
+            res.status(500).json({message:err.message})    
         }
     },
 
@@ -28,7 +28,7 @@ module.exports = {
             })
           
         } catch(err){
-            res.json({message: err})
+            res.json({message: err.message})
         }
       },
 

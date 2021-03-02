@@ -1,42 +1,53 @@
 const mongoose = require("mongoose");
-const { Schema } = require("mongoose");
 
 const cardSchema = mongoose.Schema({
-    title:{
-        type: String
+    priority:{
+        type: Number,
     },
 
-    priority:{
-        type: Number
+    title:{
+        type: String,
+        required: true
     },
 
     description:{
+        type: String,
+    },
+
+    labelId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Label'
+    }],
+
+    dueDate:{
         type: String
     },
+
+    commentId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        ref: 'Comment'
+    }],
+
+    listId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'List'
+    }],
     
     active: {
         type: Boolean,
         default: true,
         select: false
-      },
-      
-    listId:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'List'
-    }],
+    },
 
-    userId:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+    __v: {
+        type: Number,
+        select: false
+    }
 
-    commentId:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
-    }]
 },
 
     {timestamps:true} 
 )
 
-module.exports = mongoose.model("Card", cardSchema);
+module.exports = mongoose.model("Card", CardSchema);
