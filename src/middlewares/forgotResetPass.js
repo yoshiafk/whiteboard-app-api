@@ -34,9 +34,9 @@ const forgotPassword = async (req, res, next) => {
         console.log(userExist);
 
         //3. Send it to user's email using node mailer
-        const resetURL = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
+        const resetURL = `${req.protocol}://${req.get('host')}/reset-password?token=${resetToken}`;
         // console.log(resetURL);
-
+        // https://app-whiteboard.herokuapp.com/reset-password?token={{token}}
 
         await sendMail(userExist.name, userExist.email, resetURL);
 

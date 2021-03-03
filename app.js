@@ -40,9 +40,9 @@ app.use(router.googleRouter);
 app.use(router.facebookRouter);
 app.use(router.updateProfileRouter);
 
-app.get('/', (req, res) => {
-    res.render("login")
-});
+// app.get('/', (req, res) => {
+//     res.render("login")
+// });
 
 
 module.exports = app;

@@ -8,7 +8,7 @@ const { signToken, cookieOptions} = require('../services/auth');
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 router.get('/auth/facebook/redirect', passport.authenticate('facebook'), async (req, res) => {
     //res.send(req.user)
-    console.log(req.user);
+    // console.log(req.user);
     const token = signToken(req.user.id);
 
     //Stuff JWT into the cookie
