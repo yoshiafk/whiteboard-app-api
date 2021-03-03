@@ -21,3 +21,11 @@ Create register, login and user profile.
 # Optional:
 
 - Email activation -> only activated user will be saved in DB. But depends on FE.
+
+# Forgot-reset password docs
+![](img/Email%20forgot%20password.png)
+![](img/Token%20reset%20password.png)
+![](img/Reset%20password.png)
+
+# Update password (only logged in user)
+![](img/Update%20password.png)
