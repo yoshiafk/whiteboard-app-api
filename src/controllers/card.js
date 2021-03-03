@@ -1,43 +1,106 @@
 const Card = require('../models/card')
-const List = require('../models/list')
 
 module.exports = {
-    allCard: async (req, res) => {
+    addCard: async (req, res) =>{
+        const cardPost = new Card({
+            priority: req.body.priority,
+            title: req.body.title,
+            description: req.body.description,
+            dueDate: req.body.dueDate
+        })
+        try {
+            const card = await cardPost.save()
+            res.send({
+                status: 201,
+                data: card,
+                message: "card created"
+            })
+            
+        } catch (err) {
+            res.status(500).json({message:err.message})    
+        }
+    },
+
+    getCard: async (req, res) =>{
         try {
             const card = await Card.find({active: true})
             res.send({
                 status: 200,
                 data: card,
-                message: 'get all card data'
+                message: "Get all card data"
             })
-            
-        } catch (error) {
-            res.json({message:error.message})
-            
+          
+        } catch(err){
+            res.json({message: err.message})
+        }
+      },
+
+    getCardById: async (req, res) =>{
+        try {
+            const card = await Card.findOne({_id: req.params.cardId, active: true})
+            res.send({
+                status: 200,
+                data: card,
+                message: "Get card data by id"
+            })
+          
+        } catch(err){
+            res.status(500).json({message:'card not found'})
         }
     },
 
-    addCard: async (req, res) => {
-       try {
-           const list = await List.findById(req.body.listId)
+    updateCard: async (req, res) =>{
+        try {
+            const cardUpdate = await Card.updateOne({_id: req.params.cardId},
+                {
+                    priority: req.body.priority,
+                    title: req.body.title,
+                    description: req.body.description,
+                    dueDate: req.body.dueDate
+            })
+                res.send({
+                status: 201,
+                data: cardUpdate,
+                message: "success update card"
+        })
+        } catch (err) {
+            res.status(500).json(err.message)
+        }
+    },
 
-            list.listId = req.body.listId
-           
-           const response = await Card.save()
-           if(!response) return res.status(404).json({
-            message: 'Id not found',
-            error: err
-        })
-       
-        res.status(200).json({
-            message: 'succes add user to team',
-            data: response
-        })
-    }catch(error){
-        res.status(500).json({
-            error:err
-        })
-    }
+    archiveCard: async (req, res)=>{
+        try {
+            await Card.findByIdAndUpdate(req.params.cardId, {active: false})
+            
+            res.status(200).json({
+                status: 'success',
+                message: 'card successfully archived',
+                data: null
+            })
+        } catch (error) {
+            res.status(500).json({
+                status: 'failed',
+                message: error.message
+            })
+        }
+    },
 
+    retriveCard: async (req, res)=>{
+        try {
+            await Card.findByIdAndUpdate(req.params.cardId, {active: true})
+
+            res.status(200).json({
+                status: 'success',
+                message: 'card successfully retrived',
+                data: Card
+            })
+            
+        } catch (error) {
+            res.status(500).json({
+                status: 'failed',
+                message: error.message
+            })
+            
+        }
     }
 }

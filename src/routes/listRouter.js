@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const List = require('../models/list')
+// const List = require('../models/list')
 const listController = require('../controllers/list');
 // const validateBody = require('../middlewares/validation')
 

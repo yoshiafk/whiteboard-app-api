@@ -14,6 +14,7 @@ const app = express()
     const router = require ('./src/routes/')
     app.use(router.apiRouter);
     app.use(router.listRouter);
+    app.use(router.cardRouter);
     
     
 

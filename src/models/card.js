@@ -50,4 +50,4 @@ const cardSchema = mongoose.Schema({
     {timestamps:true} 
 )
 
-module.exports = mongoose.model("Card", CardSchema);
+module.exports = mongoose.model("Card", cardSchema);
