@@ -1,3 +1,5 @@
+  
+// ==================================
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -11,6 +13,7 @@ const methodOverride = require('method-override');
 const router = require('./src/routes');
 const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
+const apiRoutes = require ('./src/routes/api-route')
 
 const app = express();
 if(process.env.NODE_ENV === 'development') {
@@ -28,6 +31,12 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000, //max age cookie we sent (1day) in ms
     keys: process.env.COOKIE_KEY //encrypt the cookie
 }));
+//app.use(morgan('dev'))
+
+
+
+
+
 app.use(methodOverride('_method'));
 
 //Initialize passport
@@ -39,6 +48,8 @@ app.use(router.userRouter);
 app.use(router.googleRouter);
 app.use(router.facebookRouter);
 app.use(router.updateProfileRouter);
+//dhms
+app.use('/api', apiRoutes)
 
 // app.get('/', (req, res) => {
 //     res.render("login")
