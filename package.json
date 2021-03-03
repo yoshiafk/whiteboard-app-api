@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "googleapis": "^67.1.0",
     "gridfs-stream": "^1.1.1",
+    "heroku": "^7.50.0",
     "html-to-text": "^7.0.0",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",

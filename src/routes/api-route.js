@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
 })
 
 // Import user controller
-const userController = require('../controllers/user')
+// const userController = require('../controllers/user')
 // User routes
 // router.route('/users')
 //     .get(userController.index)
