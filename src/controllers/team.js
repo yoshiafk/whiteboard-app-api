@@ -1,6 +1,5 @@
 const Team = require ('../models/team')
 const User = require ('../models/userModel')
-const mongoose = require ('mongoose')
 
 //get populate
 exports.teamUser = async function(req,res){
