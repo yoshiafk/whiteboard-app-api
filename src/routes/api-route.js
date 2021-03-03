@@ -11,13 +11,13 @@ router.get('/', function (req, res) {
 // Import user controller
 const userController = require('../controllers/user')
 // User routes
-router.route('/users')
-    .get(userController.index)
-    .post(userController.new)
-router.route('/users/:id')
-    .get(userController.view)
-    .put(userController.update)
-    .delete(userController.delete)
+// router.route('/users')
+//     .get(userController.index)
+//     .post(userController.new)
+// router.route('/users/:id')
+//     .get(userController.view)
+//     .put(userController.update)
+//     .delete(userController.delete)
 
 //============================== 
     //import team controller

@@ -31,7 +31,7 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000, //max age cookie we sent (1day) in ms
     keys: process.env.COOKIE_KEY //encrypt the cookie
 }));
-app.use(morgan('dev'))
+//app.use(morgan('dev'))
 
 
 
