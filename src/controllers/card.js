@@ -106,6 +106,8 @@ module.exports = {
 }
 
 
+
+
 //aku push array listId
 //berarti push cardId ke listId
 //ntar populate get list Idnya
