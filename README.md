@@ -26,14 +26,11 @@ Create register, login and user profile.
 ![](img/Email%20forgot%20password.png)
 ![](img/Token%20reset%20password.png)
 ![](img/Reset%20password.png)
-
 # Update password (only logged in user)
 ![](img/Update%20password.png)
-
-# Documentation link
 -  https://documenter.getpostman.com/view/14122416/TWDTNz7p
 
 # Feature Board & Team
 - validation still on progress
-=======
+-
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
