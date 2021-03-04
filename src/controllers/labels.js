@@ -3,7 +3,7 @@ const control = require("express").Router();
 const middlewareAuth = require("../middlewares/tokenAuth");
 
 module.exports = function labelController() {
-  control.post("/label", middlewareAuth, async (req, res) => {
+  control.post("/label", async (req, res) => {
     try {
       await labelsModel.create(req.body);
       res.json({ message: "success create new label" });
@@ -22,7 +22,7 @@ module.exports = function labelController() {
     }
   });
 
-  control.put("/label", middlewareAuth, async (req, res) => {
+  control.put("/label", async (req, res) => {
     try {
       const id = req.body["id"];
       const labelName = req.body["labelName"];
@@ -33,7 +33,7 @@ module.exports = function labelController() {
     }
   });
 
-  control.delete("/label", middlewareAuth ,async (req, res) => {
+  control.delete("/label" ,async (req, res) => {
     try {
       const id = req.query["id"];
       const label = await labelsModel.deleteOne({ _id: id });
