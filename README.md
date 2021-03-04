@@ -43,4 +43,4 @@ card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm
 # Feature Label & Comment
 nyusul
 # Documentation Label & Comment
-label api documentation https://documenter.getpostman.com/view/13883114/Tz5iBgkW
+label api documentation https://documenter.getpostman.com/view/13883114/Tz5iBgpp
