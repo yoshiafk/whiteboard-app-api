@@ -13,6 +13,7 @@ const router = require('./src/routes');
 const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
 const apiRoutes = require ('./src/routes/api-route')
+const labelRoutes = require("./src/routes/routes")
 
 const app = express();
 if(process.env.NODE_ENV === 'development') {
@@ -43,6 +44,9 @@ app.use(router.facebookRouter);
 app.use(router.updateProfileRouter);
 //dhms
 app.use('/api', apiRoutes)
+
+//tamam
+app.use(labelRoutes())
 
 //adryan
 app.use(router.listRouter);
