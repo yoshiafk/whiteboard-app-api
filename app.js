@@ -1,4 +1,3 @@
-  
 // ==================================
 const express = require('express');
 const path = require('path');
@@ -45,6 +44,9 @@ app.use(router.updateProfileRouter);
 //dhms
 app.use('/api', apiRoutes)
 
+//adryan
+app.use(router.listRouter);
+app.use(router.cardRouter);
 // app.get('/', (req, res) => {
 //     res.render("login")
 // });
