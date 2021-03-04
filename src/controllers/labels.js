@@ -1,6 +1,6 @@
 const labelsModel = require("../models/labels")();
 const control = require("express").Router();
-const middlewareAuth = require("../middlewares/tokenAuth");
+// const middlewareAuth = require("../middlewares/tokenAuth");
 
 module.exports = function labelController() {
   control.post("/label", async (req, res) => {
