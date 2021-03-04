@@ -30,8 +30,10 @@ Create register, login and user profile.
 # Update password (only logged in user)
 ![](img/Update%20password.png)
 
+# Documentation link
+-  https://documenter.getpostman.com/view/14122416/TWDTNz7p
 
 # Feature Board & Team
-Board & team documentation
+- validation still on progress
 =======
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
