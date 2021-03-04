@@ -18,7 +18,7 @@ const cardSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Label'
     }],
-
+ 
     dueDate:{
         type: String
     },

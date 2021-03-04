@@ -104,3 +104,58 @@ module.exports = {
         }
     }
 }
+
+
+//aku push array listId
+//berarti push cardId ke listId
+//ntar populate get list Idnya
+
+
+// exports.assignList = async function (req, res){
+//     const listId = req.body.listId
+//     const id = req.params.id
+//     try{
+//         const result = await Card.findByIdAndUpdate(
+//             {_id: id},
+//             {$push: {listId: listId}},
+
+//         )
+//         res.status(200).json({
+//             message: `Succesfully add list with ID: ${teamId}`
+//         })
+//     }catch(error){
+//         res.status(500).json({
+//             message: error.message
+//         })
+//     }
+// }
+
+
+///===================================
+// exports.populateBoard = async function(req,res){
+//     const id = req.params.id
+//     await Board.findOne({_id: id})
+//     bklaakk
+//     .populate({
+//         path: 'cardId',
+//         select: 'title sasdad asdasdassa asdasd',
+//         populate: {
+//             path: 'userId',
+//             select: 'name email'
+            
+//         }
+//     })
+//     .exec()
+//     .then((result) =>{
+//         res.status(200).json(result)
+//     })
+//     .catch(
+//         (error) => {
+//             res.status(500).json({
+//                 error: error.message
+//             })
+//         }
+//     )
+    
+// }
+

@@ -1,3 +1,4 @@
+const card = require('../models/card')
 const List = require('../models/list')
 
 module.exports =  {
@@ -95,5 +96,42 @@ module.exports =  {
             })
             
         }
-    }
+    },
+    assignCard: async (req, res)=>{
+       const cardId = req.body.cardId
+       const listId = req.params.listId
+    
+    try {
+        const result = await List.findByIdAndUpdate(
+            {_id: listId},
+            {$push: {cardId: cardId}}
+        )
+        res.status(200).json({
+            message: `Successfully add card with Id: ${cardId}`
+        })
+    } catch (error) {
+        res.status(500).json({
+            message:error.message
+        })
+     }
+    },
+
+   populateList: async (req, res)=>{
+       const listId = req.params.listId
+       await List.findOne({_id: listId}).populate({
+           path: 'cardId',
+           select: 'priority title description dueDate'
+       })
+       .exec()
+       .then((result)=>{
+           res.status(200).json(result)
+       })
+       .catch(
+           (error) =>{
+               res.status(500).json({
+                   error: error.message
+               })
+           }
+       )
+   }
 }

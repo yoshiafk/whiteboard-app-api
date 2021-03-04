@@ -12,6 +12,12 @@ const ListSchema = mongoose.Schema({
         ref: 'Board'
       }],
 
+      cardId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        ref: 'Board'
+      }],
+
 
       active: {
         type: Boolean,
