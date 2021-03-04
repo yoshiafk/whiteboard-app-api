@@ -28,6 +28,11 @@ Create register, login and user profile.
 # Documentation Link Team & Board
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
 
+# Feature Board & Team
+- validation still on progress
+# Documentation Link Team & Board
+-  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
+
 # Feature List & card
 TBA
 # Documentation
