@@ -19,18 +19,11 @@ Create register, login and user profile.
 8. Upload image for user's profile picture. Set to default one when it is not available.
 
 # Optional:
-
 - Email activation -> only activated user will be saved in DB. But depends on FE.
-
-# Forgot-reset password docs
-![](img/Email%20forgot%20password.png)
-![](img/Token%20reset%20password.png)
-![](img/Reset%20password.png)
-# Update password (only logged in user)
-![](img/Update%20password.png)
+# Documentation Link Sign in/up
 -  https://documenter.getpostman.com/view/14122416/TWDTNz7p
 
 # Feature Board & Team
 - validation still on progress
--
+# Documentation Link Team & Board
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
