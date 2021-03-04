@@ -13,7 +13,7 @@ module.exports = function labelController() {
     }
   });
 
-  control.get("/label", middlewareAuth ,async (req, res) => {
+  control.get("/label" ,async (req, res) => {
     try {
       const data = await labelsModel.find();
       res.json({ message: "succes get data label", data: data, user: res.locals.user });
