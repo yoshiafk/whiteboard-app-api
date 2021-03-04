@@ -45,9 +45,9 @@ app.use(router.updateProfileRouter);
 //dhms
 app.use('/api', apiRoutes)
 
-app.get('/', (req, res) => {
-    res.render("login")
-});
+// app.get('/', (req, res) => {
+//     res.render("login")
+// });
 
 
 module.exports = app;
