@@ -22,56 +22,17 @@ Create register, login and user profile.
 - Email activation -> only activated user will be saved in DB. But depends on FE.
 # Documentation Link Sign in/up
 -  https://documenter.getpostman.com/view/14122416/TWDTNz7p
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
-
 # Feature Board & Team
 - validation still on progress
 # Documentation Link Team & Board
--  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
-<<<<<<< HEAD
->>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
-=======
->>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
-
-# Feature Board & Team
-- validation still on progress
-# Documentation Link Team & Board
-- https://documenter.getpostman.com/view/13078438/Tz5i9fdh
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Feature Board & Team
-- validation still on progress
-# Documentation Link Team & Board
--  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
-
+-  https://documenter.getpostman.com/view/13078438/Tz5jg1y9
 # Feature List & card
 TBA
 # Documentation
-list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9n
-
-card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
-=======
-=======
->>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
-# Feature List & card
-TBA
-# Documentation
-list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9n
-
-card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
-<<<<<<< HEAD
-
+- list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9n
+- card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
 # Feature Label & Comment
 nyusul
 # Documentation Label & Comment
-label api documentation https://documenter.getpostman.com/view/13883114/Tz5iBgpp
-
-Comment api documentation https://documenter.getpostman.com/view/13883114/Tz5jczV6
->>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
-=======
->>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
+- label api documentation https://documenter.getpostman.com/view/13883114/Tz5iBgpp
+- Comment api documentation https://documenter.getpostman.com/view/13883114/Tz5jczV6
