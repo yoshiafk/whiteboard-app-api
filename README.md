@@ -1,7 +1,8 @@
 # General purpose
-Create register, login and user profile.
+WHITEBOARD API
 
-# Features done:
+## Status 
+    # Features done:
 1. Create signup/in user credential.
 2. Signup/in using Google & Facebook Auth then save their google profile in our DB.
 3. Update password for the logged in user.
@@ -21,7 +22,7 @@ Create register, login and user profile.
 # Optional:
 - Email activation -> only activated user will be saved in DB. But depends on FE.
 ## Documentation API
-- [Sign in/up](https://documenter.getpostman.com/view/14122416/TWDTNz7p)
+- [Signin/up](https://documenter.getpostman.com/view/14122416/TWDTNz7p)
 - [Team & Board](https://documenter.getpostman.com/view/13078438/Tz5jg1y9)
 - [List](https://documenter.getpostman.com/view/13866425/TWDfCY9n)
 - [Card](https://documenter.getpostman.com/view/13866425/Tz5iAgm7)
