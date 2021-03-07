@@ -10,7 +10,8 @@ const BoardSchema = new mongoose.Schema({
 
     teamId:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team'
+        ref: 'Team',
+        unique: true
         
     }],
     
@@ -21,7 +22,7 @@ const BoardSchema = new mongoose.Schema({
     __v: {
         type: Number,
         select: false
-    }
+    },
 })
 
 module.exports= mongoose.model('Board', BoardSchema)

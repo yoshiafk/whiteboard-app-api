@@ -1,5 +1,6 @@
 const Board =require ('../models/board')
 const Team = require ('../models/team')
+const mongoose = require('mongoose')
 
 exports.allBoard = async function (req,res){
 try{
@@ -135,16 +136,17 @@ exports.populateBoard = async function(req,res){
 }
 
 exports.newVersionBoard = async function (req,res){
+    
     const board = new Board({
             title: req.body.title,
-         // {$push: {teamId: req.body.teamId}}
-             teamId: req.body.teamId
-        })
-   
-     try{
-        const response = await board.save()
-       
+            teamId: req.body.teamId
            
+        })
+
+     try{
+
+       const response = await board.save()
+        
         res.status(200).json({
             message: 'new Board created',
             data: response
@@ -156,3 +158,26 @@ exports.newVersionBoard = async function (req,res){
         })
     }
 }
+
+// exports.newBoards = async function (req, res){
+//     const board = new Board({
+//         _id: req.body._id,
+//         title: req.body.title,
+//         teamId: req.body.teamId 
+//     })
+//     try{
+
+//         const response = await board.save()
+         
+//          res.status(200).json({
+//              message: 'new Board created',
+//              data: response
+             
+//          })
+//      }catch(error){
+//          res.status(500).json({
+//              message: error.message
+//          })
+//      }
+
+// }
