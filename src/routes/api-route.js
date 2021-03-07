@@ -1,5 +1,7 @@
 // Initialize express router
 const router = require('express').Router()
+const auth = require('../middlewares/verification')
+
 //Set default API response
 router.get('/', function (req, res) {
     res.json({
@@ -7,6 +9,8 @@ router.get('/', function (req, res) {
         message: 'YO Welcome White Board!!!',
     })
 })
+
+
 
 // Import user controller
 // const userController = require('../controllers/user')
@@ -25,7 +29,7 @@ router.get('/', function (req, res) {
 const teamController = require ('../controllers/team')
 //Team routes
 router.route('/team')
-    .get(teamController.allTeam)
+    .get(auth, teamController.allTeam)
     .post(teamController.newTeam)
 
 router.route('/team/:id')
@@ -45,7 +49,7 @@ router.route('/team/:id/removeUser')
 const boardController = require ('../controllers/board')
 //Board routes
 router.route('/board')
-    .post(boardController.newBoard)
+    .post(boardController.newVersionBoard)
     .get(boardController.allBoard)
 router.route('/board/:id')
     .get(boardController.viewBoard)
@@ -55,5 +59,7 @@ router.route('/board/:id/team')
     .get(boardController.populateBoard)
     .put(boardController.assignTeam)
 
+
+//========tes
 
 module.exports = router

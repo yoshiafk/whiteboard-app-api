@@ -1,4 +1,3 @@
-  
 // ==================================
 const express = require('express');
 const path = require('path');
@@ -14,6 +13,7 @@ const router = require('./src/routes');
 const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
 const apiRoutes = require ('./src/routes/api-route')
+const labelRoutes = require("./src/routes/routes")
 
 const app = express();
 if(process.env.NODE_ENV === 'development') {
@@ -27,16 +27,10 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 app.use(compression());
-app.use(cookieSession({
-    maxAge: 24 * 60 * 60 * 1000, //max age cookie we sent (1day) in ms
-    keys: process.env.COOKIE_KEY //encrypt the cookie
-}));
-//app.use(morgan('dev'))
-
-
-
-
-
+// app.use(cookieSession({
+//     maxAge: 24 * 60 * 60 * 1000, //max age cookie we sent (1day) in ms
+//     keys: process.env.COOKIE_KEY //encrypt the cookie
+// }));
 app.use(methodOverride('_method'));
 
 //Initialize passport
@@ -51,17 +45,15 @@ app.use(router.updateProfileRouter);
 //dhms
 app.use('/api', apiRoutes)
 
+//tamam
+app.use(labelRoutes())
+
+//adryan
+app.use(router.listRouter);
+app.use(router.cardRouter);
 // app.get('/', (req, res) => {
 //     res.render("login")
 // });
 
-
-//ROUTE HANDLER FOR UNDEFINED.Place at the bottom!!
-// app.use('*', (req, res, next) => {
-//     res.status(404).json({
-//         status: 'fail',
-//         message: `Can not find ${req.originalUrl}`
-//     });
-// });
 
 module.exports = app;
