@@ -11,11 +11,9 @@ module.exports = passport.use(
         //Options for strategy
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-<<<<<<< HEAD
-        callbackURL: 'http://localhost:3000/auth/facebook/redirect',
-=======
-        callbackURL: 'https://whiteboard-team.herokuapp.com/auth/facebook/redirect',
->>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
+         callbackURL: 'http://localhost:3000/auth/facebook/redirect',
+     //   callbackURL: 'https://whiteboard-team.herokuapp.com/auth/facebook/redirect',
+      //  callbackURL: 'https://whiteboard-team.herokuapp.com/auth/facebook/redirect',
         profileFields: ['id', 'emails', 'name']
     }, async (accessToken, refreshToken, profile, done) => {
         //Passport callback function
@@ -30,11 +28,10 @@ module.exports = passport.use(
         await User.findOrCreate({ facebookId: userProfile.id, name: userProfile.name, email: userProfile.email },
             (err, user) => {
             user.save({ validateBeforeSave: false });
-<<<<<<< HEAD
             user.accessToken = accessToken;
-=======
             // user.accessToken = accessToken;
->>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
+
+            // user.accessToken = accessToken;
             done(null, user);
         })
     })

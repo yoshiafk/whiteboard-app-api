@@ -23,19 +23,26 @@ Create register, login and user profile.
 # Documentation Link Sign in/up
 -  https://documenter.getpostman.com/view/14122416/TWDTNz7p
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
 
 # Feature Board & Team
 - validation still on progress
 # Documentation Link Team & Board
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
+<<<<<<< HEAD
 >>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
+=======
+>>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
 
 # Feature Board & Team
 - validation still on progress
 # Documentation Link Team & Board
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Feature Board & Team
 - validation still on progress
@@ -49,12 +56,15 @@ list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9
 
 card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
 =======
+=======
+>>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc
 # Feature List & card
 TBA
 # Documentation
 list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9n
 
 card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
+<<<<<<< HEAD
 
 # Feature Label & Comment
 nyusul
@@ -63,3 +73,5 @@ label api documentation https://documenter.getpostman.com/view/13883114/Tz5iBgpp
 
 Comment api documentation https://documenter.getpostman.com/view/13883114/Tz5jczV6
 >>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
+=======
+>>>>>>> 583f45ede03f924b234c45e2ddcc3df1baf51ccc

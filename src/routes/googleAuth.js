@@ -9,16 +9,12 @@ const { signToken, cookieOptions} = require('../services/auth');
 router.get('/auth/google', passport.authenticate( 'google', { scope: ['profile', 'email']} ));
 // router.post('/auth/google', passport.authenticate('googleToken', { session: false }), googleSignIn); //post access token
 router.get('/auth/google/redirect', passport.authenticate('google'), async (req, res) => {
-<<<<<<< HEAD
     //res.send(req.user)
-    const token = signToken(req.user.id);
-=======
-    
+  
     const { id, name, email } = req.user;
     const token = signToken(id, name, email);
->>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
-
-    //Stuff JWT into the cookie
+    
+ //Stuff JWT into the cookie
     res.cookie('jwt', token, cookieOptions);
     res.status(200).json({
         status: 'success',
