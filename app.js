@@ -14,6 +14,10 @@ const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
 const apiRoutes = require ('./src/routes/api-route')
 const labelRoutes = require("./src/routes/routes")
+<<<<<<< HEAD
+=======
+const commentRoutes = require("./src/routes/commentRouter")
+>>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
 
 const app = express();
 if(process.env.NODE_ENV === 'development') {
@@ -47,6 +51,10 @@ app.use('/api', apiRoutes)
 
 //tamam
 app.use(labelRoutes())
+<<<<<<< HEAD
+=======
+app.use(commentRoutes())
+>>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
 
 //adryan
 app.use(router.listRouter);

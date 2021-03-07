@@ -21,8 +21,8 @@ const userControllers = {
                 // const url = `${req.protocol}://${req.get('host')}/profile`; //point to user account page
                 // console.log(url);
 
-                //Generate TOKEN
-                const token = signToken(newUser._id);
+                //Generate TOKEN 
+                const token = signToken(newUser._id, newUser.name, newUser.email);
 
                 //Stuff JWT into the cookie
                 res.cookie('jwt', token, cookieOptions);
@@ -63,7 +63,7 @@ const userControllers = {
                 return res.status(401).json({status: 'failed', message: 'Incorrect email or password'});
             } else {
                 //Generate TOKEN
-                const token = signToken(userExist._id);
+                const token = signToken(userExist._id, userExist.name, userExist.email);
 
                 //Stuff JWT into the cookie
                 res.cookie('jwt', token, cookieOptions);

@@ -137,12 +137,12 @@ exports.populateBoard = async function(req,res){
 exports.newVersionBoard = async function (req,res){
     const board = new Board({
             title: req.body.title,
-          //{$push: {teamId: req.body.teamId}}
-          teamId: req.body.teamId
+         // {$push: {teamId: req.body.teamId}}
+             teamId: req.body.teamId
         })
    
      try{
-        const response = await board.save.push()
+        const response = await board.save()
        
            
         res.status(200).json({

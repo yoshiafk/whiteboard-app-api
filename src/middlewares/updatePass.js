@@ -30,7 +30,7 @@ const updatePassword = async (req, res, next) => {
         await userExist.save();
 
         //6. Logged the user in -> send JWT token
-        const token = signToken(userExist._id);
+        const token = signToken(userExist._id, userExist.name, userExist.email);
 
         return res.status(201).json({
             status: 'success',

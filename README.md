@@ -22,12 +22,21 @@ Create register, login and user profile.
 - Email activation -> only activated user will be saved in DB. But depends on FE.
 # Documentation Link Sign in/up
 -  https://documenter.getpostman.com/view/14122416/TWDTNz7p
+<<<<<<< HEAD
+=======
+
+# Feature Board & Team
+- validation still on progress
+# Documentation Link Team & Board
+-  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
+>>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
 
 # Feature Board & Team
 - validation still on progress
 # Documentation Link Team & Board
 -  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
 
+<<<<<<< HEAD
 # Feature Board & Team
 - validation still on progress
 # Documentation Link Team & Board
@@ -39,3 +48,18 @@ TBA
 list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9n
 
 card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
+=======
+# Feature List & card
+TBA
+# Documentation
+list api documentation : https://documenter.getpostman.com/view/13866425/TWDfCY9n
+
+card api documentation : https://documenter.getpostman.com/view/13866425/Tz5iAgm7
+
+# Feature Label & Comment
+nyusul
+# Documentation Label & Comment
+label api documentation https://documenter.getpostman.com/view/13883114/Tz5iBgpp
+
+Comment api documentation https://documenter.getpostman.com/view/13883114/Tz5jczV6
+>>>>>>> b6ee9593b84791419b15afa4cf7aee750f1b67e2
