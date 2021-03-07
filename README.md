@@ -1,9 +1,9 @@
-# General purpose
-WHITEBOARD API
+# WHITEBOARD API
+> lorem ipsum blablabla
 
 ## Status 
 
-    # Features done:
+     Features done:
         1. Create signup/in user credential.
         2. Signup/in using Google & Facebook Auth then save their google profile in our DB.
         3. Update password for the logged in user.
@@ -19,7 +19,7 @@ WHITEBOARD API
             - Reset password only if the token has not expired (here set to 2 hours).
         8. Upload image for user's profile picture. Set to default one when it is not available.
 
-# Documentation API
+## Documentation API
 - [Signin/up](https://documenter.getpostman.com/view/14122416/TWDTNz7p)
 - [Team & Board](https://documenter.getpostman.com/view/13078438/Tz5jg1y9)
 - [List](https://documenter.getpostman.com/view/13866425/TWDfCY9n)
