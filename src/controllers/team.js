@@ -88,7 +88,7 @@ exports.allTeam = async function(req, res){
 exports.newTeam = async function(req, res){
     const team = new Team()
     team.teamName = req.body.teamName
-    team.boardId = mongoose.Types.ObjectId()
+   // team.boardId = mongoose.Types.ObjectId()
 
     try{
         const response = await team.save()
