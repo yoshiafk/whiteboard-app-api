@@ -40,7 +40,7 @@ Create register, login and user profile.
 # Feature Board & Team
 - validation still on progress
 # Documentation Link Team & Board
--  https://documenter.getpostman.com/view/13078438/Tz5i9fdh
+- https://documenter.getpostman.com/view/13078438/Tz5i9fdh
 
 <<<<<<< HEAD
 <<<<<<< HEAD
