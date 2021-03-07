@@ -1,21 +1,25 @@
 const Team = require ('../models/team')
 const User = require ('../models/userModel')
+const mongoose = require('mongoose')
 
 //get populate
 exports.teamUser = async function(req,res){
     const id = req.params.id
     await Team.findOne({ _id: id})
     .populate({
-        path: 'userId', 
-        select: 'email name',
-        populate:{
-            path:'boardId',
-            select: 'title'
-        }
+        path: 'userId',
+        select: 'email name'
+    })
+    .populate({
+        path: 'boardId',
+        select: 'title'
     })
     .exec()
     .then((teams) => {
-        res.status(200).json(teams)
+        res.status(200).json({
+           message: teams,
+           // select: teamName, userId
+        })
     })
     .catch(
         (error) => {
@@ -84,6 +88,8 @@ exports.allTeam = async function(req, res){
 exports.newTeam = async function(req, res){
     const team = new Team()
     team.teamName = req.body.teamName
+    team.boardId = mongoose.Types.ObjectId()
+
     try{
         const response = await team.save()
 
