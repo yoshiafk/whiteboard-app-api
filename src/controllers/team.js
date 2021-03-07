@@ -5,7 +5,14 @@ const User = require ('../models/userModel')
 exports.teamUser = async function(req,res){
     const id = req.params.id
     await Team.findOne({ _id: id})
-    .populate('userId', 'email name')
+    .populate({
+        path: 'userId', 
+        select: 'email name',
+        populate:{
+            path:'boardId',
+            select: 'title'
+        }
+    })
     .exec()
     .then((teams) => {
         res.status(200).json(teams)
