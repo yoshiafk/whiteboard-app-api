@@ -1,7 +1,7 @@
 const Team = require ('../models/team')
 const User = require ('../models/userModel')
-const mongoose = require('mongoose')
-
+//const mongoose = require('mongoose')
+const auth = require('../middlewares/verification')
 //get populate
 exports.teamUser = async function(req,res){
     const id = req.params.id
@@ -18,7 +18,6 @@ exports.teamUser = async function(req,res){
     .then((teams) => {
         res.status(200).json({
            message: teams,
-           // select: teamName, userId
         })
     })
     .catch(
@@ -73,7 +72,17 @@ exports.removeTeam = async function (req, res){
 //===========================================================
 exports.allTeam = async function(req, res){
     try{
-        const response = await Team.find({})
+        const id = req.user._id
+        const response = await Team.find({userId: id})
+
+        .populate({
+            path: 'userId',
+            select: 'email name'
+        })
+        .populate({
+            path: 'boardId',
+            select: 'title'
+        })
         res.status(200).json({
             message: 'My Team',
             data: response == null ?[] : response
@@ -86,10 +95,10 @@ exports.allTeam = async function(req, res){
 }
 //=================================================
 exports.newTeam = async function(req, res){
-    const team = new Team()
-    team.teamName = req.body.teamName
-    //team.boardId = mongoose.Types.ObjectId()
-
+    const team = new Team({
+        teamName : req.body.teamName,
+         userId: req.user._id
+    })
     try{
         const response = await team.save()
 

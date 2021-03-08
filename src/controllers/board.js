@@ -1,5 +1,6 @@
 const Board =require ('../models/board')
 const Team = require ('../models/team')
+const User = require ('../models/userModel')
 const mongoose = require('mongoose')
 
 exports.allBoard = async function (req,res){
@@ -142,7 +143,6 @@ exports.newVersionBoard = async function (req,res){
             teamId: req.body.teamId
            
         })
-
      try{
 
        const response = await board.save()

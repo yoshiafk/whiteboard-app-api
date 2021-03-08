@@ -2,6 +2,7 @@
 const router = require('express').Router()
 const auth = require('../middlewares/verification')
 
+
 //Set default API response
 router.get('/', function (req, res) {
     res.json({
@@ -31,7 +32,6 @@ const teamController = require ('../controllers/team')
 router.route('/team')
     .get(auth, teamController.allTeam)
     .post(auth, teamController.newTeam)
-
 router.route('/team/:id')
     .get(auth, teamController.viewTeam)
     .put(auth, teamController.updateTeam)
@@ -58,8 +58,8 @@ router.route('/board/:id/team')
     .get(auth, boardController.populateBoard)
     .put(auth, boardController.assignTeam)
 
-// router.route('/board/post')
-//.post(boardController.newBoards)
-
     
-module.exports = router
+
+module.exports = router 
+
+
