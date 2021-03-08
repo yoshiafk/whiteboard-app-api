@@ -13,10 +13,10 @@ router.get('/', function (req, res) {
 
 
 // Import user controller
-// const userController = require('../controllers/user')
+const userController = require('../controllers/user')
 // User routes
-// router.route('/users')
-//     .get(userController.index)
+router.route('/allusers')
+    .get(userController.getAllUsers)
 //     .post(userController.new)
 // router.route('/users/:id')
 //     .get(userController.view)
