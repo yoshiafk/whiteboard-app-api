@@ -2,6 +2,7 @@
 const router = require('express').Router()
 const auth = require('../middlewares/verification')
 
+
 //Set default API response
 router.get('/', function (req, res) {
     res.json({
@@ -13,10 +14,10 @@ router.get('/', function (req, res) {
 
 
 // Import user controller
-// const userController = require('../controllers/user')
+const userController = require('../controllers/user')
 // User routes
-// router.route('/users')
-//     .get(userController.index)
+router.route('/allusers')
+    .get(userController.getAllUsers)
 //     .post(userController.new)
 // router.route('/users/:id')
 //     .get(userController.view)
@@ -31,7 +32,6 @@ const teamController = require ('../controllers/team')
 router.route('/team')
     .get(auth, teamController.allTeam)
     .post(auth, teamController.newTeam)
-
 router.route('/team/:id')
     .get(auth, teamController.viewTeam)
     .put(auth, teamController.updateTeam)
@@ -62,4 +62,4 @@ router.route('/board/:id/team')
 //.post(boardController.newBoards)
 
     
-module.exports = router
+module.exports = router 
