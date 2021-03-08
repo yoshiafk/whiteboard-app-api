@@ -59,5 +59,7 @@ router.route('/board/:id/team')
     .put(auth, boardController.assignTeam)
 
     
+
 module.exports = router 
+
 
