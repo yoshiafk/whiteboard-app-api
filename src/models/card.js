@@ -33,6 +33,12 @@ const cardSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'List'
     }],
+
+    userId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        ref: 'User'
+    }],
     
     active: {
         type: Boolean,
