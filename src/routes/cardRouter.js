@@ -8,6 +8,7 @@ router.post('/card', cardController.addCard);
 router.get('/card', cardController.getCard);
 router.get('/card/:cardId', cardController.getCardById);
 router.put('/card/:cardId', cardController.updateCard);
+router.put('/card/:cardId/user', cardController.assignUser)
 router.delete('/card/:cardId', cardController.archiveCard);
 router.patch('/card/:cardId', cardController.retriveCard);
 
