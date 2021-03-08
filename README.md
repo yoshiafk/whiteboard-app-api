@@ -1,5 +1,5 @@
 # WHITEBOARD API
-> lorem ipsum blablabla
+> Batch 10 - Final Project WHITEBOARD
 
 ## Status 
 
