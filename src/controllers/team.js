@@ -170,18 +170,3 @@ exports.deleteTeam = async function(req, res) {
         })
     }
 }
-
-exports.teamByUser = async function(req, res){
-    try{
-        //const id = req.user._id
-        const response = await Team.find({})
-        res.status(200).json({
-            message: 'My Team',
-            data: response == null ?[] : response
-        })
-    }catch(err){
-        res.status(500).json({
-            message:err
-        })
-    }
-}
