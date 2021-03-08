@@ -99,7 +99,7 @@ exports.newTeam = async function(req, res){
         teamName : req.body.teamName,
          userId: req.user._id
     })
-    
+
     try{
         const response = await team.save()
 

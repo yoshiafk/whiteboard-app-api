@@ -15,10 +15,16 @@ const ListSchema = mongoose.Schema({
       cardId:[{
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
-        ref: 'Board'
+        ref: 'Card'
       }],
 
+      userId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        ref: 'User'
+      }],
 
+      
       active: {
         type: Boolean,
         default: true,

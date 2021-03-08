@@ -102,7 +102,26 @@ module.exports = {
             })
             
         }
-    }
+    },
+
+    assignUser: async (req, res)=>{
+        const userId = req.body.userId
+        const cardId = req.params.cardId
+     
+     try {
+         const result = await Card.findByIdAndUpdate(
+             {_id: cardId},
+             {$push: {userId: userId}}
+         )
+         res.status(200).json({
+             message: `Successfully add user with Id: ${userId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     }
 }
 
 

@@ -58,8 +58,6 @@ router.route('/board/:id/team')
     .get(auth, boardController.populateBoard)
     .put(auth, boardController.assignTeam)
 
-// router.route('/board/post')
-//.post(boardController.newBoards)
-
     
 module.exports = router 
+
