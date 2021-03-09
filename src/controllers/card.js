@@ -121,7 +121,26 @@ module.exports = {
              message:error.message
          })
       }
-     }
+     },
+
+     populateCard: async (req, res)=>{
+        const cardId = req.params.cardId
+        await Card.findOne({_id: cardId}).populate({
+            path: 'userId',
+            select: 'name slug email password user_status photo role company_name industry'
+        })
+        .exec()
+        .then((result)=>{
+            res.status(200).json(result)
+        })
+        .catch(
+            (error) =>{
+                res.status(500).json({
+                    error: error.message
+                })
+            }
+        )
+    }
 }
 
 
