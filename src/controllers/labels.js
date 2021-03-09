@@ -1,11 +1,30 @@
 const labelsModel = require("../models/labels")();
 const control = require("express").Router();
 // const middlewareAuth = require("../middlewares/tokenAuth");
+const middlewareValidation = require("../middlewares/validationLabels");
 
 module.exports = function labelController() {
-  control.post("/label", async (req, res) => {
+  control.post("/label", middlewareValidation.createLabel, async (req, res) => {
     try {
-      await labelsModel.create(req.body);
+      const payload = req.body;
+
+      if (!payload.color) {
+        const getRandomColor = () => {
+          return (
+            "rgb(" +
+            Math.floor(Math.random() * 256) +
+            "," +
+            Math.floor(Math.random() * 256) +
+            "," +
+            Math.floor(Math.random() * 256) +
+            ")"
+          );
+        };
+
+        payload.color = getRandomColor();
+      }
+
+      await labelsModel.create(payload);
       res.json({ message: "success create new label" });
     } catch (error) {
       console.log(error);
@@ -13,10 +32,14 @@ module.exports = function labelController() {
     }
   });
 
-  control.get("/label" ,async (req, res) => {
+  control.get("/label", middlewareValidation.updateLabel, async (req, res) => {
     try {
       const data = await labelsModel.find();
-      res.json({ message: "succes get data label", data: data, user: res.locals.user });
+      res.json({
+        message: "succes get data label",
+        data: data,
+        user: res.locals.user,
+      });
     } catch (error) {
       res.status(500).json({ message: "error when get label" });
     }
@@ -33,10 +56,10 @@ module.exports = function labelController() {
     }
   });
 
-  control.delete("/label" ,async (req, res) => {
+  control.delete("/label", async (req, res) => {
     try {
       const id = req.query["id"];
-      const label = await labelsModel.deleteOne({ _id: id });
+      await labelsModel.deleteOne({ _id: id });
       res.json({ message: "sucess delete label ", labelId: id });
     } catch (error) {
       res.status(500).json({ message: "error when delete label" });
