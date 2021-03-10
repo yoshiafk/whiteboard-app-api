@@ -139,18 +139,16 @@ exports.populateBoard = async function(req,res){
 exports.newVersionBoard = async function (req,res){
     
     const board = new Board({
-            title: req.body.title,
+           userId: req.user._id,
+        title: req.body.title,
             teamId: req.body.teamId
-           
         })
-     try{
 
+     try{
        const response = await board.save()
-        
         res.status(200).json({
             message: 'new Board created',
             data: response
-            
         })
     }catch(error){
         res.status(500).json({
@@ -158,26 +156,3 @@ exports.newVersionBoard = async function (req,res){
         })
     }
 }
-
-// exports.newBoards = async function (req, res){
-//     const board = new Board({
-//         _id: req.body._id,
-//         title: req.body.title,
-//         teamId: req.body.teamId 
-//     })
-//     try{
-
-//         const response = await board.save()
-         
-//          res.status(200).json({
-//              message: 'new Board created',
-//              data: response
-             
-//          })
-//      }catch(error){
-//          res.status(500).json({
-//              message: error.message
-//          })
-//      }
-
-// }

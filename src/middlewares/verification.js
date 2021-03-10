@@ -21,7 +21,7 @@ const verifyToken = async (req, res, next) => {
         if(err) {
             console.log(err);
             return res.status(401).send('Ooops something went wrong');
-        };
+        }
 
         decodedUser = user;
     });
