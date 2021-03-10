@@ -32,7 +32,7 @@ module.exports = function labelController() {
     }
   });
 
-  control.get("/label", middlewareValidation.updateLabel, async (req, res) => {
+  control.get("/label", async (req, res) => {
     try {
       const data = await labelsModel.find();
       res.json({
@@ -45,7 +45,7 @@ module.exports = function labelController() {
     }
   });
 
-  control.put("/label", async (req, res) => {
+  control.put("/label", middlewareValidation.updateLabel ,async (req, res) => {
     try {
       const id = req.body["id"];
       const labelName = req.body["labelName"];
