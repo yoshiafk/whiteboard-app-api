@@ -5,7 +5,6 @@ module.exports = {
     try {
       const rules = joi.object({
         labelName: joi.string().min(1).max(50).required(),
-        color: joi.string().min(1).max(50).required(),
       });
 
       await rules.validateAsync(req.body);
