@@ -24,8 +24,12 @@ module.exports = {
     getCard: async (req, res) =>{
         try {
             const card = await Card.find({active: true}).populate({
-                path: 'userId listId',
-                select: 'name photo role industry title'
+                path: 'userId teamId listId',
+                select: 'name photo teamName title',
+                populate:{
+                    path: 'boardId',
+                    select: 'title'
+                }
             })
             res.send({
                 status: 200,
@@ -137,6 +141,44 @@ module.exports = {
          )
          res.status(200).json({
              message: `Successfully add list with Id: ${listId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     },
+
+     assignTeam: async (req, res)=>{
+        const teamId = req.body.teamId
+        const cardId = req.params.cardId
+     
+     try {
+         const result = await Card.findByIdAndUpdate(
+             {_id: cardId},
+             {$push: {teamId: teamId}}
+         )
+         res.status(200).json({
+             message: `Successfully add team with Id: ${teamId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     },
+
+     assignBoard: async (req, res)=>{
+        const boardId = req.body.boardId
+        const cardId = req.params.cardId
+     
+     try {
+         const result = await Card.findByIdAndUpdate(
+             {_id: cardId},
+             {$push: {boardId: boardId}}
+         )
+         res.status(200).json({
+             message: `Successfully add board with Id: ${boardId}`
          })
      } catch (error) {
          res.status(500).json({

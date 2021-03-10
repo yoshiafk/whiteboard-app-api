@@ -11,6 +11,8 @@ router.get('/card/:cardId/user', cardController.populateCard)
 router.put('/card/:cardId', cardController.updateCard);
 router.put('/card/:cardId/user', cardController.assignUser);
 router.put('/card/:cardId/list', cardController.assignList);
+router.put('/card/:cardId/board', cardController.assignBoard);
+router.put('/card/:cardId/team', cardController.assignTeam);
 router.delete('/card/:cardId', cardController.archiveCard);
 router.patch('/card/:cardId', cardController.retriveCard);
 

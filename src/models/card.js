@@ -39,6 +39,12 @@ const cardSchema = mongoose.Schema({
         unique: true,
         ref: 'User'
     }],
+
+    teamId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        ref: 'Team'
+    }],
     
     active: {
         type: Boolean,
