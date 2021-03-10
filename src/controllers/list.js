@@ -21,7 +21,15 @@ module.exports =  {
 
     getList: async (req, res) =>{
         try {
-            const list = await List.find({active: true})
+            const list = await List.find({active: true}).populate({
+                active: true,
+                path: 'cardId boardId',
+                select:'userId priority title active',
+                populate: {
+                    path: 'userId',
+                    select:'name photo'
+                }
+            })
             res.send({
                 status: 200,
                 data: list,
@@ -115,6 +123,25 @@ module.exports =  {
         })
      }
     },
+
+    assignBoard: async (req, res)=>{
+        const boardId = req.body.boardId
+        const listId = req.params.listId
+     
+     try {
+         const result = await List.findByIdAndUpdate(
+             {_id: listId},
+             {$push: {boardId: boardId}}
+         )
+         res.status(200).json({
+             message: `Successfully add board with Id: ${boardId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     },
 
    populateList: async (req, res)=>{
        const listId = req.params.listId

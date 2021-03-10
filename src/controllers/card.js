@@ -23,7 +23,10 @@ module.exports = {
 
     getCard: async (req, res) =>{
         try {
-            const card = await Card.find({active: true})
+            const card = await Card.find({active: true}).populate({
+                path: 'userId listId',
+                select: 'name photo role industry title'
+            })
             res.send({
                 status: 200,
                 data: card,
@@ -123,11 +126,30 @@ module.exports = {
       }
      },
 
+     assignList: async (req, res)=>{
+        const listId = req.body.listId
+        const cardId = req.params.cardId
+     
+     try {
+         const result = await Card.findByIdAndUpdate(
+             {_id: cardId},
+             {$push: {listId: listId}}
+         )
+         res.status(200).json({
+             message: `Successfully add list with Id: ${listId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     },
+
      populateCard: async (req, res)=>{
         const cardId = req.params.cardId
         await Card.findOne({_id: cardId}).populate({
             path: 'userId',
-            select: 'name slug email password user_status photo role company_name industry'
+            select: 'name photo role industry'
         })
         .exec()
         .then((result)=>{
