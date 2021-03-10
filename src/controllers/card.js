@@ -23,7 +23,10 @@ module.exports = {
 
     getCard: async (req, res) =>{
         try {
-            const card = await Card.find({active: true})
+            const card = await Card.find({active: true}).populate({
+                path: 'userId',
+                select: 'name photo role industry'
+            })
             res.send({
                 status: 200,
                 data: card,
@@ -127,7 +130,7 @@ module.exports = {
         const cardId = req.params.cardId
         await Card.findOne({_id: cardId}).populate({
             path: 'userId',
-            select: 'name slug email password user_status photo role company_name industry'
+            select: 'name photo role industry'
         })
         .exec()
         .then((result)=>{

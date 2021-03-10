@@ -21,7 +21,15 @@ module.exports =  {
 
     getList: async (req, res) =>{
         try {
-            const list = await List.find({active: true})
+            const list = await List.find({active: true}).populate({
+                active: true,
+                path: 'cardId',
+                select:'userId priority title active',
+                populate: {
+                    path: 'userId',
+                    select:'name photo'
+                }
+            })
             res.send({
                 status: 200,
                 data: list,
