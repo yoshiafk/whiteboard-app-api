@@ -57,6 +57,8 @@ router.route('/board/:id')
 router.route('/board/:id/team')
     .get(auth, boardController.populateBoard)
     .put(auth, boardController.assignTeam)
+router.route('/boardId/:id')
+    .put(auth, teamController.updateBoardNew)
 
     
 

@@ -2,6 +2,8 @@ const Team = require ('../models/team')
 const User = require ('../models/userModel')
 //const mongoose = require('mongoose')
 const auth = require('../middlewares/verification')
+const mongoose = require('mongoose')
+const Board = require('../models/board')
 //get populate
 exports.teamUser = async function(req,res){
     const id = req.params.id
@@ -36,7 +38,12 @@ exports.addUserTeam = async function (req,res){
      const result = await Team.findByIdAndUpdate(
         {_id: id},
         {$push: {userId: userId}
+        
     })
+    
+    // if(userId === Team.userId) return res.status(401).json({
+    //     message: 'user has added before'
+    // })
     
         res.status(200).json({
             message: `succesfully add user with ID: ${userId} on team`,
@@ -74,22 +81,22 @@ exports.allTeam = async function(req, res){
     try{
         const id = req.user._id
         const response = await Team.find({userId: id})
-
-        .populate({
-            path: 'userId',
-            select: 'email name'
-        })
         .populate({
             path: 'boardId',
             select: 'title'
         })
+        .populate({
+            path: 'userId',
+            select: 'email name'
+        })
+        
         res.status(200).json({
             message: 'My Team',
             data: response == null ?[] : response
         })
-    }catch(err){
+    }catch(error){
         res.status(500).json({
-            message:err
+            message:error.message
         })
     }
 }
@@ -97,7 +104,7 @@ exports.allTeam = async function(req, res){
 exports.newTeam = async function(req, res){
     const team = new Team({
         teamName : req.body.teamName,
-         userId: req.user._id
+         userId: req.user._id,
     })
     try{
         const response = await team.save()
@@ -124,10 +131,34 @@ exports.viewTeam = async function(req, res){
         res.status(200).json({response})
     }catch(error){
         res.status(500).json({
+            message: error.message
+        })
+    }
+}
+//================================================
+exports.updateBoardNew = async function(req, res){
+    try{
+        const team = await Team.findById(req.params.id)
+
+        team.boardId = req.body.boardId
+
+        const response = await team.save(req.params.id)
+        
+        if(!team) return res.status(404).json({
+            message: 'Team doesnt exist'
+        })
+        res.status(200).json({
+            message: 'Team BoardId updated',
+            data : response
+        })
+    }catch(error){
+        res.status(500).json({
             message: err
         })
     }
 }
+
+
 //=================================================
 exports.updateTeam = async function(req, res){
     try{
