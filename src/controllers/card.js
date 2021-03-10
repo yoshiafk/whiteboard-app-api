@@ -24,8 +24,8 @@ module.exports = {
     getCard: async (req, res) =>{
         try {
             const card = await Card.find({active: true}).populate({
-                path: 'userId',
-                select: 'name photo role industry'
+                path: 'userId listId',
+                select: 'name photo role industry title'
             })
             res.send({
                 status: 200,
@@ -118,6 +118,25 @@ module.exports = {
          )
          res.status(200).json({
              message: `Successfully add user with Id: ${userId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     },
+
+     assignList: async (req, res)=>{
+        const listId = req.body.listId
+        const cardId = req.params.cardId
+     
+     try {
+         const result = await Card.findByIdAndUpdate(
+             {_id: cardId},
+             {$push: {listId: listId}}
+         )
+         res.status(200).json({
+             message: `Successfully add list with Id: ${listId}`
          })
      } catch (error) {
          res.status(500).json({
