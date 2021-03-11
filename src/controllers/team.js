@@ -41,9 +41,6 @@ exports.addUserTeam = async function (req,res){
         
     })
     
-    // if(userId === Team.userId) return res.status(401).json({
-    //     message: 'user has added before'
-    // })
     
         res.status(200).json({
             message: `succesfully add user with ID: ${userId} on team`,
@@ -137,19 +134,20 @@ exports.viewTeam = async function(req, res){
 }
 //================================================
 exports.updateBoardNew = async function(req, res){
+    
+    const boardId = req.body.boardId
+    const id = req.params.id
+
     try{
-        const team = await Team.findById(req.params.id)
+        const result = await Team.findByIdAndUpdate(
+            {_id: id},
+            {$push: {boardId: boardId}}
 
-        team.boardId = req.body.boardId
-
-        const response = await team.save(req.params.id)
-        
-        if(!team) return res.status(404).json({
-            message: 'Team doesnt exist'
-        })
+        )
+       
         res.status(200).json({
-            message: 'Team BoardId updated',
-            data : response
+            message: `Add BoardId: ${boardId}`,
+            data : result
         })
     }catch(error){
         res.status(500).json({
@@ -157,7 +155,6 @@ exports.updateBoardNew = async function(req, res){
         })
     }
 }
-
 
 //=================================================
 exports.updateTeam = async function(req, res){
@@ -185,11 +182,10 @@ exports.updateTeam = async function(req, res){
 exports.deleteTeam = async function(req, res) {
     try{
         const id = req.params.id
-        const response = await Team.findOneAndDelete({_id: id})
+        const response = await Team.findOneAndDelete(
+            {_id: id})
     
-        if(!response) return res.status(401).json({
-            message: 'Team doesnt exist'
-        })
+        
         res.status(200).json({
             message: 'Team deleted',
             data: response

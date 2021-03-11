@@ -101,6 +101,7 @@ exports.assignTeam = async function (req, res){
 
         )
         res.status(200).json({
+            data : result,
             message: `Succesfully add team with ID: ${teamId}`
         })
     }catch(error){
