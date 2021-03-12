@@ -8,19 +8,16 @@ const ListSchema = mongoose.Schema({
 
       boardId:[{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         ref: 'Board'
       }],
 
       cardId:[{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         ref: 'Card'
       }],
 
       userId:[{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         ref: 'User'
       }],
 

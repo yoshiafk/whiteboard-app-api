@@ -11,7 +11,7 @@ const BoardSchema = new mongoose.Schema({
     teamId:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team',
-        unique: true
+       
         
     }],
     
