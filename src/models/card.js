@@ -45,6 +45,12 @@ const cardSchema = mongoose.Schema({
         unique: true,
         ref: 'Team'
     }],
+
+    boardId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        ref: 'Board'
+    }],
     
     active: {
         type: Boolean,
@@ -63,5 +69,4 @@ const cardSchema = mongoose.Schema({
 )
 
 module.exports = mongoose.model("Card", cardSchema);
-
 

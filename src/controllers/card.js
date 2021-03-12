@@ -24,12 +24,8 @@ module.exports = {
     getCard: async (req, res) =>{
         try {
             const card = await Card.find({active: true}).populate({
-                path: 'userId teamId listId',
-                select: 'name photo teamName title',
-                populate:{
-                    path: 'boardId',
-                    select: 'title'
-                }
+                path: 'userId teamId listId labelId boardId',
+                select: 'name photo teamName title labelName color'
             })
             res.send({
                 status: 200,
@@ -187,6 +183,43 @@ module.exports = {
       }
      },
 
+     assignLabel: async (req, res)=>{
+        const labelId = req.body.labelId
+        const cardId = req.params.cardId
+     
+     try {
+         const result = await Card.findByIdAndUpdate(
+             {_id: cardId},
+             {$push: {labelId: labelId}}
+         )
+         res.status(200).json({
+             message: `Successfully add label with Id: ${labelId}`
+         })
+     } catch (error) {
+         res.status(500).json({
+             message:error.message
+         })
+      }
+     },
+
+     deleteCard: async (req, res)=>{
+        try{
+            const id = req.params.id
+            const response = await Card.findOneAndDelete({_id:id})
+    
+            if(!response) return res.status(401).json({
+                message: 'Card doesnt exist'
+            })
+            res.status(200).json({
+                message: 'card deleted'
+            })
+        }catch(error){
+            res.status(500).json({
+                message: error.message
+            })
+        }
+     },
+
      populateCard: async (req, res)=>{
         const cardId = req.params.cardId
         await Card.findOne({_id: cardId}).populate({
@@ -262,4 +295,3 @@ module.exports = {
 //     )
     
 // }
-

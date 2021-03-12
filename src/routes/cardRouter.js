@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cardController = require('../controllers/card');
+const card = require('../models/card');
 // const card = require('../models/card');
 // const validateBody = require('../middlewares/validation')
 
@@ -13,8 +14,8 @@ router.put('/card/:cardId/user', cardController.assignUser);
 router.put('/card/:cardId/list', cardController.assignList);
 router.put('/card/:cardId/board', cardController.assignBoard);
 router.put('/card/:cardId/team', cardController.assignTeam);
+router.put('/card/:cardId/label', cardController.assignLabel)
 router.delete('/card/:cardId', cardController.archiveCard);
 router.patch('/card/:cardId', cardController.retriveCard);
 
 module.exports = router;
-
