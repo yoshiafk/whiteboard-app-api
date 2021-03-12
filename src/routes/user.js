@@ -7,7 +7,7 @@ const {
     authentication,
     forgotResetPassword,
     updatePassword,
-    photo
+    upload
 } = require('../middlewares');
 
 

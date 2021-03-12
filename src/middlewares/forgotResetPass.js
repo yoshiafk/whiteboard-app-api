@@ -90,7 +90,7 @@ const resetPassword = async (req, res, next) => {
 
         //4. Log the user in by sending JWT token
         //Generate TOKEN
-        const token = signToken(userExist._id);
+        const token = signToken(userExist._id, userExist.name, userExist.email);
 
         //Stuff JWT into the cookie
         res.cookie('jwt', token, cookieOptions);

@@ -1,4 +1,3 @@
-  
 // ==================================
 const express = require('express');
 const path = require('path');
@@ -8,19 +7,19 @@ const cors = require('cors');
 const compression = require('compression');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const methodOverride = require('method-override');
 
 const router = require('./src/routes');
 const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
-const apiRoutes = require ('./src/routes/api-route')
+const apiRoutes = require('./src/routes/api-route');
 
 const app = express();
-if(process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev')); //logger only runns in the development environment
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev')); //logger only runns in the development environment
 }
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
+app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,7 +30,6 @@ app.use(compression());
 //     maxAge: 24 * 60 * 60 * 1000, //max age cookie we sent (1day) in ms
 //     keys: process.env.COOKIE_KEY //encrypt the cookie
 // }));
-app.use(methodOverride('_method'));
 
 //Initialize passport
 app.use(passport.initialize());
@@ -43,11 +41,7 @@ app.use(router.googleRouter);
 app.use(router.facebookRouter);
 app.use(router.updateProfileRouter);
 //dhms
-app.use('/api', apiRoutes)
-
-// app.get('/', (req, res) => {
-//     res.render("login")
-// });
+app.use('/api', apiRoutes);
 
 
 module.exports = app;

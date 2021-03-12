@@ -1,18 +1,8 @@
 const mongoose = require('mongoose');
-const Grid = require('gridfs-stream'); //Allows streaming of files to and from mongodb
+
+const cloudinary = require('../services/cloudinary');
+const { signToken, cookieOptions} = require('../services/auth');
 const User = require('../models/userModel');
-const methodOverride = require('method-override');
-const connect = mongoose.createConnection(process.env.DATABASE, 
-    { useUnifiedTopology: true, useNewUrlParser: true})
-
-// Init gfs
-let gfs;
-
-connect.once('open',() => {
-    // Init stream
-    gfs = Grid(connect.db, mongoose.mongo);
-    gfs.collection('uploads');
-});
 
 
 //Helper to loop through body to restrict only allowed fields
@@ -26,6 +16,8 @@ const filterObj = (obj, ...allowedFields) => {
 
 const updateProfile = async (req, res) => {
 
+    let userExist = req.user;
+
     //1. Create error end point if user tries to POST password data
     if(req.body.password || req.body.user_status) return res.status(400).json({
         status: 'failed',
@@ -33,24 +25,43 @@ const updateProfile = async (req, res) => {
     });
 
    try {
-    //2. Update user's profile
-    //Filter the input body
-    const filteredBody = filterObj(req.body, 'name', 'email', 'role', 'industry', 'company_name');
+        //2. Update user's profile
+        //Filter the input body
+        const filteredBody = filterObj(req.body, 'name', 'email', 'role', 'industry', 'company_name');
 
-    if(req.file) filteredBody.photo = req.file.filename;
+        if(filteredBody) {
 
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
-        new: true, //to show the new data
-        runValidators: true
-    });
+            userExist = await User.findByIdAndUpdate(userExist.id, filteredBody, {
+                new: true, //to show the new data
+                runValidators: true
+            });
+        }
 
-    // const image = gfs.createReadStream(req.user.photo);
-    // image.pipe(res);
+        if(req.file) {
+            const photoUploaded = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'whiteboard-users',
+                public_id: userExist.slug,
+                unique_filename: false,
+                transformation: [
+                {width: 200, height: 200, crop: "thumb"}
+                ],
+            });
 
-    res.status(200).json({
-        status: 'success',
-        data: updatedUser || req.user
-    })
+            userExist.photo = photoUploaded.secure_url;
+            await userExist.save();
+        }
+
+        //Generate TOKEN
+        const token = signToken(userExist.id, userExist.name, userExist.email);
+
+        //Stuff JWT into the cookie
+        res.cookie('jwt', token, cookieOptions);
+
+        res.status(200).json({
+            status: 'success',
+            token,
+            data: userExist
+        })
    } catch (err) {
        res.status(400).json({
         status: 'failed', 
