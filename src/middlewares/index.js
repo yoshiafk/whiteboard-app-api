@@ -3,7 +3,7 @@ const verification = require('./verification');
 const authentication = require('./authentication');
 const forgotResetPassword = require('./forgotResetPass');
 const updatePassword = require('./updatePass');
-const photo = require('./uploadPhoto');
+const upload = require('./uploadImage');
 
 module.exports = {
     validation,
@@ -11,5 +11,5 @@ module.exports = {
     authentication,
     forgotResetPassword,
     updatePassword,
-    photo
+    upload
 }
