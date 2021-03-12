@@ -1,5 +1,8 @@
 // Initialize express router
 const router = require('express').Router()
+const auth = require('../middlewares/verification')
+
+
 //Set default API response
 router.get('/', function (req, res) {
     res.json({
@@ -8,11 +11,13 @@ router.get('/', function (req, res) {
     })
 })
 
+
+
 // Import user controller
 const userController = require('../controllers/user')
 // User routes
-// router.route('/users')
-//     .get(userController.index)
+router.route('/allusers')
+    .get(userController.getAllUsers)
 //     .post(userController.new)
 // router.route('/users/:id')
 //     .get(userController.view)
@@ -25,35 +30,38 @@ const userController = require('../controllers/user')
 const teamController = require ('../controllers/team')
 //Team routes
 router.route('/team')
-    .get(teamController.allTeam)
-    .post(teamController.newTeam)
-
+    .get(auth, teamController.allTeam)
+    .post(auth, teamController.newTeam)
 router.route('/team/:id')
-    .get(teamController.viewTeam)
-    .put(teamController.updateTeam)
-    .delete(teamController.deleteTeam)
-
+    .get(auth, teamController.viewTeam)
+    .put(auth, teamController.updateTeam)
+    .delete(auth, teamController.deleteTeam)
 router.route('/team/:id/team')
-    .get(teamController.teamUser)
-    .put(teamController.addUserTeam)
+    .get(auth, teamController.teamUser)
+    .put(auth, teamController.addUserTeam)
 router.route('/team/:id/removeUser')
-    .put(teamController.removeTeam)
-
+    .put(auth, teamController.removeTeam)
+ 
 //============================== 
     //import board controller
 //==============================
 const boardController = require ('../controllers/board')
 //Board routes
 router.route('/board')
-    .post(boardController.newBoard)
-    .get(boardController.allBoard)
+    .post(auth, boardController.newVersionBoard)
+    .get(auth, boardController.allBoard)
 router.route('/board/:id')
-    .get(boardController.viewBoard)
-    .put(boardController.updateBoard)
-    .delete(boardController.deleteBoard)
+    .get(auth, boardController.viewBoard)
+    .put(auth, boardController.updateBoard)
+    .delete(auth, boardController.deleteBoard)
 router.route('/board/:id/team')
-    .get(boardController.populateBoard)
-    .put(boardController.assignTeam)
+    .get(auth, boardController.populateBoard)
+    .put(auth, boardController.assignTeam)
+router.route('/boardId/:id')
+    .put(auth, teamController.updateBoardNew)
+
+    
+
+module.exports = router 
 
 
-module.exports = router

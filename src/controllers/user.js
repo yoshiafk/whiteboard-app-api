@@ -21,7 +21,7 @@ const userControllers = {
                 // const url = `${req.protocol}://${req.get('host')}/profile`; //point to user account page
                 // console.log(url);
 
-                //Generate TOKEN
+                //Generate TOKEN 
                 const token = signToken(newUser._id, newUser.name, newUser.email);
 
                 //Stuff JWT into the cookie

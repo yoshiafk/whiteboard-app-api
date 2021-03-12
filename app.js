@@ -11,7 +11,10 @@ const cookieSession = require('cookie-session');
 const router = require('./src/routes');
 const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
-const apiRoutes = require('./src/routes/api-route');
+const apiRoutes = require ('./src/routes/api-route')
+const labelRoutes = require("./src/routes/routes")
+
+const commentRoutes = require("./src/routes/commentRouter")
 
 const app = express();
 if (process.env.NODE_ENV === 'development') {
@@ -42,6 +45,17 @@ app.use(router.facebookRouter);
 app.use(router.updateProfileRouter);
 //dhms
 app.use('/api', apiRoutes);
+
+//tamam
+app.use(labelRoutes())
+app.use(commentRoutes())
+
+//adryan
+app.use(router.listRouter);
+app.use(router.cardRouter);
+// app.get('/', (req, res) => {
+//     res.render("login")
+// });
 
 
 module.exports = app;
