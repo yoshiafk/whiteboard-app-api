@@ -8,12 +8,15 @@ const compression = require('compression');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
+const app = express();
+app.use(cors());
+
 const router = require('./src/routes');
 const GoogleSetup = require('./src/services/googleAuth');
 const FacebookSetup = require('./src/services/facebookAuth');
 const apiRoutes = require('./src/routes/api-route');
 
-const app = express();
+
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); //logger only runns in the development environment
 }
@@ -24,7 +27,6 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors());
 app.use(compression());
 // app.use(cookieSession({
 //     maxAge: 24 * 60 * 60 * 1000, //max age cookie we sent (1day) in ms
