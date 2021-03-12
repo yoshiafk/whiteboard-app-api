@@ -1,14 +1,26 @@
 const Team = require ('../models/team')
 const User = require ('../models/userModel')
-
+//const mongoose = require('mongoose')
+const auth = require('../middlewares/verification')
+const mongoose = require('mongoose')
+const Board = require('../models/board')
 //get populate
 exports.teamUser = async function(req,res){
     const id = req.params.id
     await Team.findOne({ _id: id})
-    .populate('userId', 'email name')
+    .populate({
+        path: 'userId',
+        select: 'email name'
+    })
+    .populate({
+        path: 'boardId',
+        select: 'title'
+    })
     .exec()
     .then((teams) => {
-        res.status(200).json(teams)
+        res.status(200).json({
+           message: teams,
+        })
     })
     .catch(
         (error) => {
@@ -26,7 +38,9 @@ exports.addUserTeam = async function (req,res){
      const result = await Team.findByIdAndUpdate(
         {_id: id},
         {$push: {userId: userId}
+        
     })
+    
     
         res.status(200).json({
             message: `succesfully add user with ID: ${userId} on team`,
@@ -62,21 +76,33 @@ exports.removeTeam = async function (req, res){
 //===========================================================
 exports.allTeam = async function(req, res){
     try{
-        const response = await Team.find({})
+        const id = req.user._id
+        const response = await Team.find({userId: id})
+        .populate({
+            path: 'boardId',
+            select: 'title'
+        })
+        .populate({
+            path: 'userId',
+            select: 'email name'
+        })
+        
         res.status(200).json({
             message: 'My Team',
             data: response == null ?[] : response
         })
-    }catch(err){
+    }catch(error){
         res.status(500).json({
-            message:err
+            message:error.message
         })
     }
 }
 //=================================================
 exports.newTeam = async function(req, res){
-    const team = new Team()
-    team.teamName = req.body.teamName
+    const team = new Team({
+        teamName : req.body.teamName,
+         userId: req.user._id,
+    })
     try{
         const response = await team.save()
 
@@ -102,10 +128,34 @@ exports.viewTeam = async function(req, res){
         res.status(200).json({response})
     }catch(error){
         res.status(500).json({
+            message: error.message
+        })
+    }
+}
+//================================================
+exports.updateBoardNew = async function(req, res){
+    
+    const boardId = req.body.boardId
+    const id = req.params.id
+
+    try{
+        const result = await Team.findByIdAndUpdate(
+            {_id: id},
+            {$push: {boardId: boardId}}
+
+        )
+       
+        res.status(200).json({
+            message: `Add BoardId: ${boardId}`,
+            data : result
+        })
+    }catch(error){
+        res.status(500).json({
             message: err
         })
     }
 }
+
 //=================================================
 exports.updateTeam = async function(req, res){
     try{
@@ -132,11 +182,10 @@ exports.updateTeam = async function(req, res){
 exports.deleteTeam = async function(req, res) {
     try{
         const id = req.params.id
-        const response = await Team.findOneAndDelete({_id: id})
+        const response = await Team.findOneAndDelete(
+            {_id: id})
     
-        if(!response) return res.status(401).json({
-            message: 'Team doesnt exist'
-        })
+        
         res.status(200).json({
             message: 'Team deleted',
             data: response

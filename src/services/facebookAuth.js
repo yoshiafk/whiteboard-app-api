@@ -27,6 +27,9 @@ module.exports = passport.use(
             (err, user) => {
             user.save({ validateBeforeSave: false });
             user.accessToken = accessToken;
+            // user.accessToken = accessToken;
+
+            // user.accessToken = accessToken;
             done(null, user);
         })
     })

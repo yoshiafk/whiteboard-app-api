@@ -6,7 +6,8 @@ const TeamSchema = new mongoose.Schema({
     teamName:{
         type: String, 
         max: 255,
-        unique: true
+        unique: true,
+       
     },
     userId:[{
         type: mongoose.Schema.Types.ObjectId,
@@ -15,7 +16,8 @@ const TeamSchema = new mongoose.Schema({
     }],
     boardId:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Board'
+        ref: 'Board',
+       
     }],
     __v: {
         type: Number,
