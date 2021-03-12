@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  slug: String,
+ // slug: String,
   email: {
     type: String,
     required: true,

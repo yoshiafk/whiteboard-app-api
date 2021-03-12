@@ -1,5 +1,5 @@
 const Team = require ('../models/team')
-const User = require ('../models/userModel')
+const User = require ('../models/index.js')
 //const mongoose = require('mongoose')
 const auth = require('../middlewares/verification')
 const mongoose = require('mongoose')
@@ -101,9 +101,11 @@ exports.allTeam = async function(req, res){
 exports.newTeam = async function(req, res){
     const team = new Team({
         teamName : req.body.teamName,
-         userId: req.user._id,
+        userId: req.user._id,
     })
+
     try{
+       
         const response = await team.save()
 
         res.status(200).json({
@@ -111,6 +113,7 @@ exports.newTeam = async function(req, res){
             data: response
         })
     }catch(error){
+    
         res.status(500).json({
             message: error.message
         })
