@@ -21,7 +21,7 @@ module.exports = passport.use('google',
         //Options for strategy
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-       callbackURL: 'https://whiteboard-team.herokuapp.com/auth/google/redirect'
+        callbackURL: 'https://whiteboard-team.herokuapp.com/auth/googlefacebook/redirect'
     }, async (accessToken, refreshToken, profile, done) => {
         //Passport callback function
         try {
