@@ -17,25 +17,6 @@ try{
 }
 }
 
-// exports.newBoard = async function (req, res){
-//     const board = new Board()
-//     board.title = req.body.title
-    
-//     try{
-//         const response = await board.save()
-//         res.status(200).json({
-//             message: 'new Board created',
-//             data: response
-            
-//         })
-//     }catch(error){
-//         res.status(500).json({
-//             message: error.message
-//         })
-//     }
-
-// }
-
 exports.viewBoard = async function (req, res){
     try{
         const id = req.params.id
