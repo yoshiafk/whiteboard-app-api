@@ -1,8 +1,7 @@
 const Team = require ('../models/team')
 const User = require ('../models/index.js')
-//const mongoose = require('mongoose')
+
 const auth = require('../middlewares/verification')
-const mongoose = require('mongoose')
 const Board = require('../models/board')
 //get populate
 exports.teamUser = async function(req,res){
@@ -40,12 +39,7 @@ exports.addUserTeam = async function (req,res){
         {$push: {userId: userId}
         
     })
-    
-    // if(userId === Team.userId) return res.status(401).json({
-    //     message: 'user has added before'
-    // })
-    
-        res.status(200).json({
+            res.status(200).json({
             message: `succesfully add user with ID: ${userId} on team`,
             result: result
                     
