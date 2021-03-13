@@ -6,7 +6,9 @@ module.exports = {
             priority: req.body.priority,
             title: req.body.title,
             description: req.body.description,
-            dueDate: req.body.dueDate
+            dueDate: req.body.dueDate,
+            teamId: req.body.teamdId,
+            boarId: req.body.boardId
         })
         try {
             const card = await cardPost.save()
