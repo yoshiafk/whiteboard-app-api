@@ -40,12 +40,12 @@ const cardSchema = mongoose.Schema({
 
     teamId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'teams'
+        ref: 'Team'
     },
 
     boardId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'boards'
+        ref: 'Board'
     },
     
     active: {
