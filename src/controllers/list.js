@@ -1,5 +1,6 @@
 const card = require('../models/card')
 const List = require('../models/list')
+const board = require('../models/board')
 
 module.exports =  {
     newList: async (req, res) =>{
@@ -160,6 +161,28 @@ module.exports =  {
                })
            }
        )
-   }
+   },
+   getListBoard: async (req, res) =>{
+    try {
+        const id = req.params.boardId
+        const list = await List.find({boardId: id}).populate({
+            active: true,
+            path: 'cardId boardId userId',
+            select:'userId priority title active',
+            populate: {
+                path: 'userId',
+                select:'name photo'
+            }
+        })
+        res.send({
+            status: 200,
+            data: list,
+            message: "Get all list by boardId"
+        })
+      
+    } catch(err){
+        res.json({message: err.message})
+    }
+  },
 }
 

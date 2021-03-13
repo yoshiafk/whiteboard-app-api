@@ -13,6 +13,7 @@ router.patch('/list/:listId', listController.retriveList);
 router.put('/list/:listId/card', listController.assignCard);
 router.put('/list/:listId/board', listController.assignBoard);
 router.get('/list/:listId/card', listController.populateList)
+router.get('/listboard/:boardId', listController.getListBoard)
 
 module.exports = router;
 
