@@ -25,8 +25,7 @@ const cardSchema = mongoose.Schema({
 
     commentId:[{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
-        ref: 'Comment'
+        ref: 'Comment',
     }],
 
     listId:[{
@@ -36,21 +35,18 @@ const cardSchema = mongoose.Schema({
 
     userId:[{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         ref: 'User'
     }],
 
-    teamId:[{
+    teamId:{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         ref: 'Team'
-    }],
+    },
 
-    boardId:[{
+    boardId:{
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
         ref: 'Board'
-    }],
+    },
     
     active: {
         type: Boolean,
