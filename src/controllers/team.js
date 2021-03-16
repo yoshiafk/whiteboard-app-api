@@ -134,23 +134,24 @@ exports.viewTeam = async function(req, res){
 }
 //================================================
 exports.updateBoardNew = async function(req, res){
+    const id = req.params.id
+
     try{
-        const team = await Team.findById(req.params.id)
-
-        team.boardId = req.body.boardId
-
-        const response = await team.save(req.params.id)
+        const team = await Team.findByIdAndUpdate(
+            {_id: id},
+            {$push: {boardId: req.body.boardId}
+        })
         
-        if(!team) return res.status(404).json({
+        if(!id) return res.status(404).json({
             message: 'Team doesnt exist'
         })
         res.status(200).json({
             message: 'Team BoardId updated',
-            data : response
+            data : team
         })
     }catch(error){
         res.status(500).json({
-            message: err
+            message: error.message
         })
     }
 }
