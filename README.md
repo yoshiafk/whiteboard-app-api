@@ -18,6 +18,7 @@
             - new_password can not be equal to the old password.
             - Reset password only if the token has not expired (here set to 2 hours).
         8. Upload image for user's profile picture. Set to default one when it is not available.
+        9. CRUD on team & board
 
 ## Documentation API
 - [Signin/up](https://documenter.getpostman.com/view/14122416/TWDTNz7p)
